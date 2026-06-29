@@ -8,10 +8,10 @@
     <meta name="keywords" content="doni, joao, donijoao, ti, web, developer" />
     <meta
       name="description"
-      content="Blog pessoal em PHP para compartilhar minhas experiências, conhecimentos e pensamentos sobre tecnologia, programação e desenvolvimento web."
+      content="Blog pessoal em PHP para compartilhar minhas experiências e conhecimentos sobre tecnologia e desenvolvimento pessoal."
     />
     <link rel="icon" href="app/view/img/Perfil DoniDeveloper.jpg" />
-    <title>DoniJoaoDevelopment</title>
+    <title>DoniJoaoTI</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -21,10 +21,7 @@
   </head>
   <body>
     <header class="header text-center py-3">
-      <img src="app/view/img/Capa.png" alt="Bandeira" width="200" class="img-fluid" />
-      <h1>Doni Joao</h1>
-      <h3>Blog pessoal sobre tecnologia, programação e desenvolvimento web</h3>
-      <p>Por João Pedro Doni</p>
+      <img src="app/view/img/CapaDoniJoaoDev.jpeg" alt="Bandeira" width="1400" class="img-fluid" />
     </header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
@@ -44,40 +41,60 @@
             <li class="nav-item">
               <a class="nav-link" href="index.html">Página Inicial</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Artigos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Ferramentas Úteis</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Papeis de Parede</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">DoniJoao Games</a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
-    <gmp-map center="59.329444885253906,18.068559646606445" zoom="14" map-id="DEMO_MAP_ID">
-      <gmp-advanced-marker position="59.329444885253906,18.068559646606445" title="My location"></gmp-advanced-marker>
-    </gmp-map>
     <main>
       <div class="container mt-4">
-        <h2>Conheça a Suécia</h2>
+        <h1>Doni Joao TI</h1>
+      <h3>Blog pessoal sobre Tecnologia e Desenvolvimento</h3>
+      <div class="container mt-4">
+        <h2>Novidades</h2>
         <p></p>
         <div class="row">
           <div class="col-md-6">
-            <img src="imagens/DestaqueSuecia.jpg" alt="DestaqueSuecia" class="img-fluid" />
+            <img src="" alt="" class="img-fluid" />
+            <h4>Em breve, novidades sobre o blog e novos conteúdos para vocês!</h4>
           </div>
           <div class="col-md-6">
-            <img src="imagens/DestqueSuecia2.jpg" alt="DestaqueSuecia2" class="img-fluid" />
+            <img src="CapaArtigo-1.jpg" alt="" class="img-fluid" />
           </div>
         </div>
       </div>
       <div class="container mt-4">
-        <h2>Por favor, dê sua sugestão de como podemos melhorar este site</h2>
+        <h2>Por favor, se tiver alguma sugestão fique a vontade !</h2>
         <form action="enviarComentario.php" method="post">
           <div class="mb-3">
             <label for="nome" class="form-label">Nome:</label>
             <input type="text" class="form-control" id="nome" name="nome" required />
           </div>
-          <div class="mb-3">
-            <label for="mensagem" class="form-label">Mensagem:</label>
-            <textarea class="form-control" id="mensagem" name="mensagem" rows="4" required></textarea>
-          </div>
+
           <div class="mb-3">
             <label for="email" class="form-label">E-mail:</label>
             <input type="email" class="form-control" id="email" name="email" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="numero" class="form-label">Numero:(opcional)</label>
+            <input type="number" class="form-control" id="numero" name="numero"/>
+          </div>
+
+          <div class="mb-3">
+            <label for="mensagem" class="form-label">Mensagem:</label>
+            <textarea class="form-control" id="mensagem" name="mensagem" rows="4" required></textarea>
           </div>
           <button class="btn btn-primary" type="submit">Enviar</button>
         </form>
@@ -85,7 +102,7 @@
       <br /><br /><br />
     </main>
     <footer class="footer text-center py-3">
-      <p><strong>Projeto Volta ao Mundo - Suécia</strong></p>
+      <p><strong>Doni Joao</strong></p>
     </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
