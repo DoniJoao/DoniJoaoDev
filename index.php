@@ -2,6 +2,7 @@
 // 1. Carrega os arquivos de Banco de Dados e Models PRIMEIRO
 require_once 'app/config/database.php';
 require_once 'app/models/Post.php';
+require_once 'app/models/Produto.php';
 
 // 2. Carrega as partes de cima do site
 require_once 'app/views/partials/header.php';
@@ -48,6 +49,21 @@ if (array_key_exists($pagina, $paginasPermitidas)) {
             header("Location: index.php");
             exit;
         }
+    // Se a página for um post único, buscamos apenas ele
+    elseif ($pagina === 'post') {
+        // ... (código do post que já fizemos)
+    }
+    // NOVA ROTA: Se a página for a vitrine de produtos
+    elseif ($pagina === 'produtos') {
+        $database = new Database();
+        $db = $database->getConnection();
+        
+        $produtoModel = new Produto($db);
+        $stmt = $produtoModel->listarAtivos();
+        
+        // Pega todos os produtos do banco e joga na variável $produtos
+        $produtos = $stmt->fetchAll(); 
+    }    
     }
 
     // Injeta o conteúdo do meio (agora a view do blog "enxerga" a variável $posts)
