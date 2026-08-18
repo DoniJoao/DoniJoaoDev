@@ -4,6 +4,13 @@
  */
 ?>
 <main class="container mt-5">
+  <!-- INÍCIO DO DEBUG -->
+<!-- <div class="alert alert-danger">
+<!--   <strong>Debug de Produtos:</strong><br>
+<!--   <pre><?php print_r($produtos); ?></pre>
+<!--</div>
+  <!-- FIM DO DEBUG -->
+
   <div class="text-center mb-5">
     <h1 class="display-5 fw-bold">Vitrine do Desenvolvedor</h1>
     <p class="text-muted">Equipamentos e acessórios que eu recomendo para o seu setup.</p>
