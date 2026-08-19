@@ -14,6 +14,9 @@
             <li class="nav-item">
               <a class="nav-link" href="index.php?pagina=contato">Contato</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php?pagina=login">Área Restrita</a>
+            </li>
           </ul>
         </div>
       </div>
