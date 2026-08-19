@@ -15,8 +15,6 @@ $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 'blog';
 $paginasPermitidas = [
     'blog'        => 'app/views/pages/blog.php',
     'post'        => 'app/views/pages/post_unico.php',
-    'ferramentas' => 'app/views/pages/tools.php',
-    'wallpapers'  => 'app/views/pages/wallpapers.php',
     'produtos'    => 'app/views/pages/produtos.php',
     'contato'     => 'app/views/pages/contato.php'
     // A página de leitura do post individual vai entrar aqui depois!

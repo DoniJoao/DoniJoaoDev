@@ -12,12 +12,6 @@
               <a class="nav-link" href="index.php?pagina=ferramentas">Ferramentas Úteis</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php?pagina=wallpapers">Wallpapers</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.php?pagina=produtos">Produtos</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="index.php?pagina=contato">Contato</a>
             </li>
           </ul>
