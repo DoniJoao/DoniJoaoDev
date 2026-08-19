@@ -35,7 +35,8 @@ $paginasPermitidas = [
     'contato'     => 'app/views/pages/contato.php',
     'login'       => 'app/views/pages/login.php',
     'admin'       => 'app/views/pages/admin.php',
-    // A página de leitura do post individual vai entrar aqui depois!
+    'admin_post_listar'=> 'app/views/pages/admin_post_listar.php',
+    'admin_post_criar' => 'app/views/pages/admin_post_criar.php'
 ];
 
 // 5. O Maestro: Conecta Model e View
@@ -120,6 +121,74 @@ if (array_key_exists($pagina, $paginasPermitidas)) {
             if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
                 header("Location: index.php?pagina=login");
                 exit;
+            }
+        }
+            // ROTA: AÇÃO DE MUDAR STATUS (Invisível, apenas processa e redireciona)
+        elseif ($pagina === 'admin_post_status') {
+        if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+            header("Location: index.php?pagina=login");
+            exit;
+        }
+
+        // Pega os dados da URL (ex: ?pagina=admin_post_status&id=1&status=publicado)
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+        $novo_status = isset($_GET['status']) ? $_GET['status'] : null;
+
+        if ($id && $novo_status) {
+            $database = new Database();
+            $db = $database->getConnection();
+            $postModel = new Post($db);
+            $postModel->mudarStatus($id, $novo_status);
+        }
+
+        // Volta para a lista
+        header("Location: index.php?pagina=admin_post_listar");
+        exit;
+        }
+
+        // ROTA: LISTAR TODOS OS POSTS (Painel)
+        elseif ($pagina === 'admin_post_listar') {
+            if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+                header("Location: index.php?pagina=login");
+                exit;
+            }
+
+            $database = new Database();
+            $db = $database->getConnection();
+            
+            $postModel = new Post($db);
+            $stmt = $postModel->listarTodos();
+            $posts_admin = $stmt->fetchAll();
+        }
+            // ROTA: CRIAR NOVO POST (Protegida)
+        elseif ($pagina === 'admin_post_criar') {
+            // Porteiro: Só entra se estiver logado!
+            if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+                header("Location: index.php?pagina=login");
+                exit;
+            }
+
+            // Se o usuário preencheu e enviou o formulário
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $titulo = $_POST['titulo'];
+                // Cria a URL amigável automaticamente (ex: "Meu Título!" vira "meu-titulo")
+                $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $titulo))); 
+                
+                $resumo = $_POST['resumo'];
+                $conteudo = $_POST['conteudo'];
+                $categoria_id = $_POST['categoria_id'];
+                $status = $_POST['status'];
+
+                $database = new Database();
+                $db = $database->getConnection();
+                $postModel = new Post($db);
+
+                // Tenta salvar no banco
+                if ($postModel->criar($titulo, $slug, $resumo, $conteudo, $categoria_id, $status)) {
+                    $mensagem_sucesso = "Post publicado com sucesso!";
+                } else {
+                    $mensagem_erro = "Erro ao salvar o post. Tente novamente.";
+                }
             }
         }
     }

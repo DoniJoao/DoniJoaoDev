@@ -59,4 +59,47 @@ class Post {
         // Como esperamos apenas UM post, usamos fetch() em vez de fetchAll()
         return $stmt->fetch();
     }
+    // Método para criar um novo post no banco
+    public function criar($titulo, $slug, $resumo, $conteudo, $categoria_id, $status) {
+        $query = "INSERT INTO " . $this->table_name . " 
+                  (titulo, slug, resumo, conteudo, categoria_id, status, data_criacao) 
+                  VALUES 
+                  (:titulo, :slug, :resumo, :conteudo, :categoria_id, :status, NOW())";
+
+        $stmt = $this->conn->prepare($query);
+
+        // Segurança: O bindParam limpa os dados e evita ataques de SQL Injection
+        $stmt->bindParam(":titulo", $titulo);
+        $stmt->bindParam(":slug", $slug);
+        $stmt->bindParam(":resumo", $resumo);
+        $stmt->bindParam(":conteudo", $conteudo);
+        $stmt->bindParam(":categoria_id", $categoria_id);
+        $stmt->bindParam(":status", $status);
+
+        // Executa e retorna true se der certo, ou false se falhar
+        return $stmt->execute();
+    }
+    // Busca TODOS os posts para o painel admin
+    public function listarTodos() {
+        $query = "SELECT p.id, p.titulo, p.status, c.nome as categoria_nome, p.data_criacao 
+                  FROM " . $this->table_name . " p 
+                  LEFT JOIN categorias c ON p.categoria_id = c.id 
+                  ORDER BY p.id DESC";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    // Altera o status de um post específico
+    public function mudarStatus($id, $novo_status) {
+        $query = "UPDATE " . $this->table_name . " SET status = :status WHERE id = :id";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":status", $novo_status);
+        $stmt->bindParam(":id", $id);
+        
+        return $stmt->execute();
+    }
 }
