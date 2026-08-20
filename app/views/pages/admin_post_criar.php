@@ -45,8 +45,8 @@
                 <div class="mb-4">
                     <label class="form-label fw-bold">Status</label>
                     <select name="status" class="form-select w-25">
-                        <option value="publicado">Publicado (Visível para todos)</option>
-                        <option value="rascunho">Rascunho (Apenas no banco)</option>
+                        <option value="1">Publicado (Visível para todos)</option>
+                        <option value="0">Rascunho (Apenas no banco)</option>
                     </select>
                 </div>
 

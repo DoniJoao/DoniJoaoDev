@@ -19,7 +19,9 @@
                 </div>
                 <div class="card-footer bg-transparent border-0 pb-3">
                     <a href="index.php?pagina=admin_post_criar" class="btn btn-primary w-100 mb-2">Novo Artigo</a>
-                    <button class="btn btn-outline-secondary w-100" disabled>Listar Artigos (Em breve)</button>
+                    <a href="index.php?pagina=admin_post_listar" class="btn btn-outline-secondary w-100">
+                        <i class="bi bi-list-ul"></i> Listar Artigos
+                    </a>
                 </div>
             </div>
         </div>

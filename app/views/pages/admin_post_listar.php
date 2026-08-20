@@ -29,7 +29,8 @@
                                     <td><?php echo htmlspecialchars($post['categoria_nome']); ?></td>
                                     
                                     <td class="text-center">
-                                        <?php if ($post['status'] === 'publicado'): ?>
+                                        <!-- No PHP, == 1 verifica se é verdadeiro -->
+                                        <?php if ($post['status'] == 1): ?>
                                             <span class="badge bg-success">Publicado</span>
                                         <?php else: ?>
                                             <span class="badge bg-secondary">Rascunho</span>
@@ -37,13 +38,14 @@
                                     </td>
                                     
                                     <td class="px-4 text-end">
-                                        <!-- O botão muda dependendo do status atual -->
-                                        <?php if ($post['status'] === 'publicado'): ?>
-                                            <a href="index.php?pagina=admin_post_status&id=<?php echo $post['id']; ?>&status=rascunho" class="btn btn-sm btn-outline-warning" title="Reverter para Rascunho">
+                                        <?php if ($post['status'] == 1): ?>
+                                            <!-- Manda status=0 para ocultar -->
+                                            <a href="index.php?pagina=admin_post_status&id=<?php echo $post['id']; ?>&status=0" class="btn btn-sm btn-outline-warning" title="Reverter para Rascunho">
                                                 <i class="bi bi-eye-slash"></i> Ocultar
                                             </a>
                                         <?php else: ?>
-                                            <a href="index.php?pagina=admin_post_status&id=<?php echo $post['id']; ?>&status=publicado" class="btn btn-sm btn-outline-success" title="Publicar Artigo">
+                                            <!-- Manda status=1 para publicar -->
+                                            <a href="index.php?pagina=admin_post_status&id=<?php echo $post['id']; ?>&status=1" class="btn btn-sm btn-outline-success" title="Publicar Artigo">
                                                 <i class="bi bi-eye"></i> Publicar
                                             </a>
                                         <?php endif; ?>

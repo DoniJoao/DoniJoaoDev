@@ -22,8 +22,7 @@ class Post {
                     " . $this->table_name . " p
                   LEFT JOIN 
                     categorias c ON p.categoria_id = c.id
-                  WHERE 
-                    p.status = 'publicado'
+                  WHERE p.status = 1
                   ORDER BY 
                     p.data_criacao DESC";
 
@@ -46,7 +45,7 @@ class Post {
                   LEFT JOIN 
                     categorias c ON p.categoria_id = c.id
                   WHERE 
-                    p.slug = :slug AND p.status = 'publicado'
+                    p.slug = :slug AND p.status = 1
                   LIMIT 1";
 
         $stmt = $this->conn->prepare($query);
