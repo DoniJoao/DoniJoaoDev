@@ -29,22 +29,26 @@
                                     <td><?php echo htmlspecialchars($post['categoria_nome']); ?></td>
                                     
                                     <td class="text-center">
-                                        <!-- No PHP, == 1 verifica se é verdadeiro -->
                                         <?php if ($post['status'] == 1): ?>
-                                            <span class="badge bg-success">Publicado</span>
+                                            <!-- Badge clicável para edição -->
+                                            <a href="index.php?pagina=admin_post_editar&id=<?php echo $post['id']; ?>" class="badge bg-success text-decoration-none" title="Editar postagem">
+                                                Publicado <i class="bi bi-pencil-fill ms-1" style="font-size: 0.75rem;"></i>
+                                            </a>
                                         <?php else: ?>
-                                            <span class="badge bg-secondary">Rascunho</span>
+                                            <!-- Badge clicável para edição -->
+                                            <a href="index.php?pagina=admin_post_editar&id=<?php echo $post['id']; ?>" class="badge bg-secondary text-decoration-none" title="Editar rascunho">
+                                                Rascunho <i class="bi bi-pencil-fill ms-1" style="font-size: 0.75rem;"></i>
+                                            </a>
                                         <?php endif; ?>
                                     </td>
                                     
                                     <td class="px-4 text-end">
+                                        <!-- Alternar Status: APENAS Publicar / Ocultar -->
                                         <?php if ($post['status'] == 1): ?>
-                                            <!-- Manda status=0 para ocultar -->
                                             <a href="index.php?pagina=admin_post_status&id=<?php echo $post['id']; ?>&status=0" class="btn btn-sm btn-outline-warning" title="Reverter para Rascunho">
                                                 <i class="bi bi-eye-slash"></i> Ocultar
                                             </a>
                                         <?php else: ?>
-                                            <!-- Manda status=1 para publicar -->
                                             <a href="index.php?pagina=admin_post_status&id=<?php echo $post['id']; ?>&status=1" class="btn btn-sm btn-outline-success" title="Publicar Artigo">
                                                 <i class="bi bi-eye"></i> Publicar
                                             </a>

@@ -34,7 +34,9 @@ $paginasPermitidas = [
     'login'            => 'app/views/pages/login.php',
     'admin'            => 'app/views/pages/admin.php',
     'admin_post_listar'=> 'app/views/pages/admin_post_listar.php',
-    'admin_post_criar' => 'app/views/pages/admin_post_criar.php'
+    'admin_post_criar' => 'app/views/pages/admin_post_criar.php',
+    'admin_post_status' => 'app/views/pages/admin_post_listar.php',
+    'admin_post_editar' => 'app/views/pages/admin_post_editar.php'
 ];
 
 // 5. O Maestro: Conecta Model e View
@@ -122,7 +124,7 @@ if (array_key_exists($pagina, $paginasPermitidas)) {
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         $novo_status = isset($_GET['status']) ? $_GET['status'] : null;
 
-        if ($id && $novo_status) {
+        if ($id !== null && $novo_status !== null) {
             $database = new Database();
             $db = $database->getConnection();
             $postModel = new Post($db);
@@ -171,6 +173,54 @@ if (array_key_exists($pagina, $paginasPermitidas)) {
             } else {
                 $mensagem_erro = "Erro ao salvar o post. Tente novamente.";
             }
+        }
+    }
+    // ROTA: EDITAR POST (O Motor)
+    elseif ($pagina === 'admin_post_editar') {
+        // Bloqueio de segurança
+        if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+            header("Location: index.php?pagina=login");
+            exit;
+        }
+
+        // Pega o ID da URL
+        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+        // Se não tem ID válido, expulsa de volta pra listagem
+        if (!$id) {
+            header("Location: index.php?pagina=admin_post_listar");
+            exit;
+        }
+
+        $database = new Database();
+        $db = $database->getConnection();
+        $postModel = new Post($db);
+
+        // Se o formulário foi enviado (Botão de Salvar clicado)
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $titulo = $_POST['titulo'];
+            // Gera um novo slug baseado no título editado
+            $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $titulo))); 
+            
+            $resumo = $_POST['resumo'];
+            $conteudo = $_POST['conteudo'];
+            $categoria_id = $_POST['categoria_id'];
+            $status = $_POST['status'];
+
+            if ($postModel->atualizar($id, $titulo, $slug, $resumo, $conteudo, $categoria_id, $status)) {
+                $mensagem_sucesso = "Artigo atualizado com sucesso!";
+            } else {
+                $mensagem_erro = "Erro ao atualizar o artigo. Tente novamente.";
+            }
+        }
+
+        // Busca os dados atuais do post no banco para preencher o formulário
+        $post_atual = $postModel->buscarPorId($id);
+
+        // Se tentou editar um post que foi apagado ou não existe
+        if (!$post_atual) {
+            header("Location: index.php?pagina=admin_post_listar");
+            exit;
         }
     }
 

@@ -101,4 +101,33 @@ class Post {
         
         return $stmt->execute();
     }
+    // Busca um único post pelo ID para preencher o formulário de edição
+    public function buscarPorId($id) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Salva as alterações feitas no post
+    public function atualizar($id, $titulo, $slug, $resumo, $conteudo, $categoria_id, $status) {
+        $query = "UPDATE " . $this->table_name . " 
+                  SET titulo = :titulo, slug = :slug, resumo = :resumo, 
+                      conteudo = :conteudo, categoria_id = :categoria_id, status = :status
+                  WHERE id = :id";
+        
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':titulo', $titulo);
+        $stmt->bindParam(':slug', $slug);
+        $stmt->bindParam(':resumo', $resumo);
+        $stmt->bindParam(':conteudo', $conteudo);
+        $stmt->bindParam(':categoria_id', $categoria_id);
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':id', $id);
+
+        return $stmt->execute();
+    }
 }
