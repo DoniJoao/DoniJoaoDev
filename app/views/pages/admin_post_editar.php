@@ -27,9 +27,8 @@
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="categoria_id" class="form-label fw-bold">ID da Categoria</label>
-                        <!-- Se você tiver um <select> de categorias, substitua este input -->
-                        <input type="number" class="form-control" id="categoria_id" name="categoria_id" value="<?php echo htmlspecialchars($post_atual['categoria_id']); ?>" required>
+                        <label for="slug" class="form-label fw-bold">Slug (URL Amigável)</label>
+                        <input type="text" class="form-control" id="slug" name="slug" value="<?php echo htmlspecialchars($post_atual['slug']); ?>" required>
                     </div>
                     
                     <div class="col-md-6 mb-3">

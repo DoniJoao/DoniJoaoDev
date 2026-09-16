@@ -15,7 +15,6 @@
                         <tr>
                             <th class="px-4 py-3">ID</th>
                             <th class="py-3">Título</th>
-                            <th class="py-3">Categoria</th>
                             <th class="py-3 text-center">Status</th>
                             <th class="px-4 py-3 text-end">Ações</th>
                         </tr>
@@ -26,7 +25,6 @@
                                 <tr>
                                     <td class="px-4 text-muted">#<?php echo $post['id']; ?></td>
                                     <td class="fw-bold text-dark"><?php echo htmlspecialchars($post['titulo']); ?></td>
-                                    <td><?php echo htmlspecialchars($post['categoria_nome']); ?></td>
                                     
                                     <td class="text-center">
                                         <?php if ($post['status'] == 1): ?>

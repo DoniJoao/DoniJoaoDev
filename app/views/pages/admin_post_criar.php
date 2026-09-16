@@ -21,14 +21,9 @@
                         <label class="form-label fw-bold">Título do Post</label>
                         <input type="text" name="titulo" class="form-control" required placeholder="Ex: Como criar um MVP rápido">
                     </div>
-                    
                     <div class="col-md-4 mb-3">
-                        <label class="form-label fw-bold">Categoria</label>
-                        <select name="categoria_id" class="form-select" required>
-                            <!-- Lembrando: 1 e 2 são os IDs que temos no banco de dados -->
-                            <option value="1">Back-end</option>
-                            <option value="2">Front-end</option>
-                        </select>
+                        <label class="form-label fw-bold">Slug (URL Amigável)</label>
+                        <input type="text" name="slug" class="form-control" required placeholder="Ex: como-criar-um-mvp-rapido">
                     </div>
                 </div>
 

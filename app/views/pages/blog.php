@@ -18,11 +18,6 @@
             <div class="card shadow-sm h-100">
               <div class="card-body d-flex flex-column">
                 
-                <!-- Exibindo a Categoria (Vinda do JOIN) -->
-                <span class="badge bg-secondary mb-2" style="width: fit-content;">
-                    <?php echo htmlspecialchars($post['categoria_nome']); ?>
-                </span>
-                
                 <!-- Exibindo o Título -->
                 <h5 class="card-title"><?php echo htmlspecialchars($post['titulo']); ?></h5>
                 

@@ -12,11 +12,6 @@
     <a href="index.php" class="btn btn-outline-secondary mb-4">&larr; Voltar para o Blog</a>
 
     <article>
-        <!-- Categoria e Título -->
-        <span class="badge bg-primary mb-2">
-            <?php echo htmlspecialchars($post_atual['categoria_nome']); ?>
-        </span>
-        
         <h1 class="display-4 fw-bold">
             <?php echo htmlspecialchars($post_atual['titulo']); ?>
         </h1>
