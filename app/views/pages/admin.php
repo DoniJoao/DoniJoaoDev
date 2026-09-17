@@ -2,6 +2,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <!-- Puxando o nome do administrador direto da Sessão -->
         <h2>Painel de Controle</h2>
+        <a href="index.php?pagina=admin_perfil" class="btn btn-outline-secondary me-2">Alterar senha</a>
         <a href="index.php?pagina=logout" class="btn btn-outline-danger">Sair (Logout)</a>
     </div>
 

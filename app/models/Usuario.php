@@ -40,5 +40,7 @@ class Usuario {
         $stmt->bindParam(":id", $id);
         
         return $stmt->execute();
+        var_dump($stmt->rowCount()); 
+        die();
     }
 }

@@ -16,4 +16,6 @@
 │   ├── /partials        (Os "pedaços" que se repetem: header.php, nav.php, footer.php)
 │   └── /pages           (O conteúdo do meio: home.php, blog.php, contato.php)
 │
+├──/controllers
+|
 └── index.php            (O "Porteiro" do seu site - Front Controller)
