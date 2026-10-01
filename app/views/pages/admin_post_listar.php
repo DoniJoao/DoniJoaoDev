@@ -50,6 +50,9 @@
                                             <a href="index.php?pagina=admin_post_status&id=<?php echo $post['id']; ?>&status=1" class="btn btn-sm btn-outline-success" title="Publicar Artigo">
                                                 <i class="bi bi-eye"></i> Publicar
                                             </a>
+                                                                                    <a href="index.php?pagina=admin_post_deletar&id=<?php echo $post['id']; ?>" class="btn btn-sm btn-outline-danger" title="Excluir Artigo" onclick="return confirm('Tem certeza que deseja excluir este artigo? Esta ação não pode ser desfeita.');">
+                                            <i class="bi bi-trash"></i> Excluir
+                                        </a>
                                         <?php endif; ?>
                                     </td>
                                 </tr>

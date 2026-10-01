@@ -102,4 +102,11 @@ class Post {
 
         return $stmt->execute();
     }
+        // Deleta um post pelo ID. Retorna true/false.
+    public function deletar($id) {
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = :id LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }

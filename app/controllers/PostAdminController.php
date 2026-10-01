@@ -31,6 +31,7 @@ class PostAdminController extends Controller
 
             if ($postModel->criar($titulo, $slug, $resumo, $conteudo, $status)) {
                 $mensagem_sucesso = "Post publicado com sucesso!";
+                $this->redirect('index.php?pagina=admin_post_listar');
             } else {
                 $mensagem_erro = "Erro ao salvar o post. Tente novamente.";
             }
@@ -95,6 +96,18 @@ class PostAdminController extends Controller
         if ($id !== null && $novo_status !== null) {
             $postModel = new Post($this->db());
             $postModel->mudarStatus((int) $id, $novo_status);
+        }
+
+        $this->redirect('index.php?pagina=admin_post_listar');
+    }
+        public function deletar() {
+        $this->exigirLogin();
+
+        $id = $_GET['id'] ?? null;
+
+        if ($id !== null) {
+            $postModel = new Post($this->db());
+            $postModel->deletar($id);
         }
 
         $this->redirect('index.php?pagina=admin_post_listar');
