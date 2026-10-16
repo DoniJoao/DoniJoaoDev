@@ -42,6 +42,12 @@ $rotas = [
     'admin_post_editar' => ['PostAdminController','editar'],
     'admin_post_status' => ['PostAdminController','mudarStatus'],
     'admin_post_deletar' => ['PostAdminController','deletar'],
+
+    'admin_produto_listar' => ['ProdutoAdminController','listar'],
+    'admin_produto_criar'  => ['ProdutoAdminController','criar'],
+    'admin_produto_editar' => ['ProdutoAdminController','editar'],
+    'admin_produto_status' => ['ProdutoAdminController','mudarStatus'],
+    'admin_produto_deletar'=> ['ProdutoAdminController','deletar'],
 ];
 
 $pagina = $_GET['pagina'] ?? 'blog';

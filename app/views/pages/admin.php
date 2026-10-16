@@ -35,8 +35,8 @@
                     <p class="card-text text-muted">Adicione novos produtos para venda ou altere preços e descrições.</p>
                 </div>
                 <div class="card-footer bg-transparent border-0 pb-3">
-                    <button class="btn btn-success w-100 mb-2" disabled>Novo Produto (Em breve)</button>
-                    <button class="btn btn-outline-secondary w-100" disabled>Listar Produtos (Em breve)</button>
+                    <a href="index.php?pagina=admin_produto_criar" class="btn btn-success w-100 mb-2">Novo Produto</a>
+                    <a href="index.php?pagina=admin_produto_listar" class="btn btn-outline-secondary w-100">Listar Produtos</a>
                 </div>
             </div>
         </div>
