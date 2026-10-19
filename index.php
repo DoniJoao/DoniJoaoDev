@@ -4,6 +4,9 @@
 // ============================================================
 session_start();
 
+// Define a URL base do projeto (ajuste se o nome da pasta mudar)
+define('BASE_URL', 'http://localhost/DoniJoaoDev/');
+
 require_once __DIR__ . '/app/config/database.php';
 
 // Autoload: acha a classe sozinho em core/, models/ e controllers/

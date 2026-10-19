@@ -5,31 +5,29 @@
     </div>
 
     <!-- Exibe mensagens de sucesso ou erro -->
-    <?php if (isset($mensagem_sucesso)): ?>
-        <div class="alert alert-success"><?php echo $mensagem_sucesso; ?></div>
-    <?php endif; ?>
-    <?php if (isset($mensagem_erro)): ?>
-        <div class="alert alert-danger"><?php echo $mensagem_erro; ?></div>
+    <?php if (isset($mensagem_erro) && !empty($mensagem_erro)): ?>
+        <div class="alert alert-danger"><?php echo htmlspecialchars($mensagem_erro); ?></div>
     <?php endif; ?>
 
     <div class="card shadow-sm">
         <div class="card-body p-4">
-            <form action="index.php?pagina=admin_post_criar" method="POST">
+            <!-- O ENCTYPE é obrigatório para upload de arquivos -->
+            <form action="index.php?pagina=admin_post_criar" method="POST" enctype="multipart/form-data">
                 
-                <div class="row">
-                    <div class="col-md-8 mb-3">
-                        <label class="form-label fw-bold">Título do Post</label>
-                        <input type="text" name="titulo" class="form-control" required placeholder="Ex: Como criar um MVP rápido">
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label fw-bold">Slug (URL Amigável)</label>
-                        <input type="text" name="slug" class="form-control" required placeholder="Ex: como-criar-um-mvp-rapido">
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Título do Post</label>
+                    <input type="text" name="titulo" class="form-control" required placeholder="Ex: Como criar um MVP rápido">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Resumo (Para a página inicial)</label>
                     <textarea name="resumo" class="form-control" rows="2" required placeholder="Uma breve descrição que vai aparecer nos cards do blog..."></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Imagem de Capa (Max 2MB)</label>
+                    <input type="file" name="imagem_capa" class="form-control" accept="image/jpeg, image/png, image/webp">
+                    <div class="form-text">Formatos aceitos: JPG, PNG, WEBP.</div>
                 </div>
 
                 <div class="mb-3">
@@ -40,8 +38,8 @@
                 <div class="mb-4">
                     <label class="form-label fw-bold">Status</label>
                     <select name="status" class="form-select w-25">
+                        <option value="0" selected>Rascunho (Apenas no banco)</option>
                         <option value="1">Publicado (Visível para todos)</option>
-                        <option value="0">Rascunho (Apenas no banco)</option>
                     </select>
                 </div>
 

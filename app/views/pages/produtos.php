@@ -27,7 +27,7 @@
               
               <!-- Se no futuro você adicionar foto, ela entra aqui -->
               <?php if (!empty($produto['imagem'])): ?>
-                <img src="assets/img/<?php echo htmlspecialchars($produto['imagem']); ?>" class="card-img-top" alt="...">
+                <img src="<?php echo BASE_URL; ?>assets/img/produtos/<?php echo $produto['imagem']; ?>" class="card-img-top" alt="Falha ao carregar a imagem do produto" style="height: 150px; object-fit: cover;">
               <?php else: ?>
                 <!-- Um espaço reservado bonitinho caso não tenha imagem -->
                 <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 150px; opacity: 0.2;">

@@ -14,6 +14,7 @@
                     <thead class="table-light">
                         <tr>
                             <th class="px-4 py-3">ID</th>
+                            <th class="py-3">Capa</th> <!-- Nova coluna -->
                             <th class="py-3">Título</th>
                             <th class="py-3 text-center">Status</th>
                             <th class="px-4 py-3 text-end">Ações</th>
@@ -24,16 +25,24 @@
                             <?php foreach ($posts_admin as $post): ?>
                                 <tr>
                                     <td class="px-4 text-muted">#<?php echo $post['id']; ?></td>
+                                    
+                                    <!-- Miniatura da Capa -->
+                                    <td>
+                                        <?php if (!empty($post['imagem_capa'])): ?>
+                                            <img src="<?php echo BASE_URL; ?>assets/img/posts/<?php echo $post['imagem_capa']; ?>" style="height: 40px; width: 60px; object-fit: cover;" class="rounded border">
+                                        <?php else: ?>
+                                            <span class="badge bg-light text-secondary border">Sem foto</span>
+                                        <?php endif; ?>
+                                    </td>
+
                                     <td class="fw-bold text-dark"><?php echo htmlspecialchars($post['titulo']); ?></td>
                                     
                                     <td class="text-center">
                                         <?php if ($post['status'] == 1): ?>
-                                            <!-- Badge clicável para edição -->
                                             <a href="index.php?pagina=admin_post_editar&id=<?php echo $post['id']; ?>" class="badge bg-success text-decoration-none" title="Editar postagem">
                                                 Publicado <i class="bi bi-pencil-fill ms-1" style="font-size: 0.75rem;"></i>
                                             </a>
                                         <?php else: ?>
-                                            <!-- Badge clicável para edição -->
                                             <a href="index.php?pagina=admin_post_editar&id=<?php echo $post['id']; ?>" class="badge bg-secondary text-decoration-none" title="Editar rascunho">
                                                 Rascunho <i class="bi bi-pencil-fill ms-1" style="font-size: 0.75rem;"></i>
                                             </a>
@@ -41,7 +50,6 @@
                                     </td>
                                     
                                     <td class="px-4 text-end">
-                                        <!-- Alternar Status: APENAS Publicar / Ocultar -->
                                         <?php if ($post['status'] == 1): ?>
                                             <a href="index.php?pagina=admin_post_status&id=<?php echo $post['id']; ?>&status=0" class="btn btn-sm btn-outline-warning" title="Reverter para Rascunho">
                                                 <i class="bi bi-eye-slash"></i> Ocultar
@@ -50,10 +58,11 @@
                                             <a href="index.php?pagina=admin_post_status&id=<?php echo $post['id']; ?>&status=1" class="btn btn-sm btn-outline-success" title="Publicar Artigo">
                                                 <i class="bi bi-eye"></i> Publicar
                                             </a>
-                                                                                    <a href="index.php?pagina=admin_post_deletar&id=<?php echo $post['id']; ?>" class="btn btn-sm btn-outline-danger" title="Excluir Artigo" onclick="return confirm('Tem certeza que deseja excluir este artigo? Esta ação não pode ser desfeita.');">
+                                        <?php endif; ?>
+
+                                        <a href="index.php?pagina=admin_post_deletar&id=<?php echo $post['id']; ?>" class="btn btn-sm btn-outline-danger" title="Excluir Artigo" onclick="return confirm('Tem certeza que deseja excluir este artigo? A imagem também será apagada.');">
                                             <i class="bi bi-trash"></i> Excluir
                                         </a>
-                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

@@ -33,12 +33,12 @@ class Post {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Cria um novo post no banco
-    public function criar($titulo, $slug, $resumo, $conteudo, $status) {
+    // Cria um novo post no banco (Atualizado com imagem_capa)
+    public function criar($titulo, $slug, $resumo, $conteudo, $imagem_capa, $status) {
         $query = "INSERT INTO " . $this->table_name . " 
-                  (titulo, slug, resumo, conteudo, status, data_criacao) 
+                  (titulo, slug, resumo, conteudo, imagem_capa, status, data_criacao) 
                   VALUES 
-                  (:titulo, :slug, :resumo, :conteudo, :status, NOW())";
+                  (:titulo, :slug, :resumo, :conteudo, :imagem_capa, :status, NOW())";
 
         $stmt = $this->conn->prepare($query);
 
@@ -46,6 +46,7 @@ class Post {
         $stmt->bindParam(":slug", $slug);
         $stmt->bindParam(":resumo", $resumo);
         $stmt->bindParam(":conteudo", $conteudo);
+        $stmt->bindParam(":imagem_capa", $imagem_capa);
         $stmt->bindParam(":status", $status);
 
         return $stmt->execute();
@@ -53,7 +54,8 @@ class Post {
 
     // Busca TODOS os posts (publicados e rascunhos) para o painel admin
     public function listarTodos() {
-        $query = "SELECT id, titulo, status, data_criacao 
+        // Adicionado imagem_capa no SELECT para a listagem do admin
+        $query = "SELECT id, titulo, imagem_capa, status, data_criacao 
                   FROM " . $this->table_name . " 
                   ORDER BY id DESC";
 
@@ -84,11 +86,11 @@ class Post {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Salva as alterações feitas no post
-    public function atualizar($id, $titulo, $slug, $resumo, $conteudo, $status) {
+    // Salva as alterações feitas no post (Atualizado com imagem_capa)
+    public function atualizar($id, $titulo, $slug, $resumo, $conteudo, $imagem_capa, $status) {
         $query = "UPDATE " . $this->table_name . " 
                   SET titulo = :titulo, slug = :slug, resumo = :resumo, 
-                      conteudo = :conteudo, status = :status
+                      conteudo = :conteudo, imagem_capa = :imagem_capa, status = :status
                   WHERE id = :id";
         
         $stmt = $this->conn->prepare($query);
@@ -97,12 +99,14 @@ class Post {
         $stmt->bindParam(':slug', $slug);
         $stmt->bindParam(':resumo', $resumo);
         $stmt->bindParam(':conteudo', $conteudo);
+        $stmt->bindParam(':imagem_capa', $imagem_capa);
         $stmt->bindParam(':status', $status);
         $stmt->bindParam(':id', $id);
 
         return $stmt->execute();
     }
-        // Deleta um post pelo ID. Retorna true/false.
+    
+    // Deleta um post pelo ID. Retorna true/false.
     public function deletar($id) {
         $query = "DELETE FROM " . $this->table_name . " WHERE id = :id LIMIT 1";
         $stmt = $this->conn->prepare($query);

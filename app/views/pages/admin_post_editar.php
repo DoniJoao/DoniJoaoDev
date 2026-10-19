@@ -1,65 +1,57 @@
 <main class="container mt-5 mb-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Editar Artigo #<?php echo $post_atual['id']; ?></h2>
-        <a href="index.php?pagina=admin_post_listar" class="btn btn-outline-secondary">
-            <i class="bi bi-arrow-left"></i> Voltar
-        </a>
+        <h2>Editar Artigo</h2>
+        <a href="index.php?pagina=admin_post_listar" class="btn btn-outline-secondary">Voltar</a>
     </div>
 
-    <!-- Alertas de Sucesso ou Erro após salvar -->
-    <?php if (isset($mensagem_sucesso)): ?>
-        <div class="alert alert-success shadow-sm"><i class="bi bi-check-circle-fill"></i> <?php echo $mensagem_sucesso; ?></div>
+    <!-- Exibe mensagens de sucesso ou erro -->
+    <?php if (isset($mensagem_erro) && !empty($mensagem_erro)): ?>
+        <div class="alert alert-danger"><?php echo htmlspecialchars($mensagem_erro); ?></div>
     <?php endif; ?>
 
-    <?php if (isset($mensagem_erro)): ?>
-        <div class="alert alert-danger shadow-sm"><i class="bi bi-exclamation-triangle-fill"></i> <?php echo $mensagem_erro; ?></div>
-    <?php endif; ?>
-
-    <div class="card shadow-sm border-0">
+    <div class="card shadow-sm">
         <div class="card-body p-4">
-            <!-- A action aponta para a mesma URL com o ID para processar o formulário corretamente -->
-            <form action="index.php?pagina=admin_post_editar&id=<?php echo $post_atual['id']; ?>" method="POST">
+            <!-- ENCTYPE obrigatório para upload -->
+            <form action="index.php?pagina=admin_post_editar&id=<?php echo $post_atual['id']; ?>" method="POST" enctype="multipart/form-data">
                 
                 <div class="mb-3">
-                    <label for="titulo" class="form-label fw-bold">Título do Artigo</label>
-                    <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($post_atual['titulo']); ?>" required>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="slug" class="form-label fw-bold">Slug (URL Amigável)</label>
-                        <input type="text" class="form-control" id="slug" name="slug" value="<?php echo htmlspecialchars($post_atual['slug']); ?>" required>
-                    </div>
-                    
-                    <div class="col-md-6 mb-3">
-                        <label for="status" class="form-label fw-bold">Status de Publicação</label>
-                        <select class="form-select" id="status" name="status">
-                            <!-- O PHP marca com 'selected' o status atual salvo no banco -->
-                            <option value="1" <?php echo ($post_atual['status'] == 1) ? 'selected' : ''; ?>>Publicado</option>
-                            <option value="0" <?php echo ($post_atual['status'] == 0) ? 'selected' : ''; ?>>Rascunho</option>
-                        </select>
-                    </div>
+                    <label class="form-label fw-bold">Título do Post</label>
+                    <input type="text" name="titulo" class="form-control" required value="<?php echo htmlspecialchars($post_atual['titulo']); ?>">
                 </div>
 
                 <div class="mb-3">
-                    <label for="resumo" class="form-label fw-bold">Resumo</label>
-                    <textarea class="form-control" id="resumo" name="resumo" rows="3" required><?php echo htmlspecialchars($post_atual['resumo']); ?></textarea>
+                    <label class="form-label fw-bold">Resumo (Para a página inicial)</label>
+                    <textarea name="resumo" class="form-control" rows="2" required><?php echo htmlspecialchars($post_atual['resumo']); ?></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Imagem de Capa Atual</label>
+                    <?php if (!empty($post_atual['imagem_capa'])): ?>
+                        <div class="mb-2">
+                            <img src="<?php echo BASE_URL; ?>assets/img/posts/<?php echo $post_atual['imagem_capa']; ?>" style="max-height: 150px;" class="img-thumbnail" alt="Capa do post">
+                        </div>
+                    <?php else: ?>
+                        <p class="text-muted small">Nenhuma imagem de capa cadastrada.</p>
+                    <?php endif; ?>
+                    
+                    <input type="file" name="imagem_capa" class="form-control" accept="image/jpeg, image/png, image/webp">
+                    <div class="form-text">Deixe em branco para manter a imagem atual. (Max 2MB)</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Conteúdo Completo (Aceita HTML)</label>
+                    <textarea name="conteudo" class="form-control" rows="12" required><?php echo htmlspecialchars($post_atual['conteudo']); ?></textarea>
                 </div>
 
                 <div class="mb-4">
-                    <label for="conteudo" class="form-label fw-bold">Conteúdo Completo</label>
-                    <!-- Textareas não usam atributo 'value', o texto vai entre as tags de abertura e fechamento -->
-                    <textarea class="form-control" id="conteudo" name="conteudo" rows="12" required><?php echo htmlspecialchars($post_atual['conteudo']); ?></textarea>
+                    <label class="form-label fw-bold">Status</label>
+                    <select name="status" class="form-select w-25">
+                        <option value="0" <?php echo $post_atual['status'] == 0 ? 'selected' : ''; ?>>Rascunho</option>
+                        <option value="1" <?php echo $post_atual['status'] == 1 ? 'selected' : ''; ?>>Publicado (Visível)</option>
+                    </select>
                 </div>
 
-                <hr class="text-muted mb-4">
-
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-success px-4 py-2 fw-bold">
-                        <i class="bi bi-save"></i> Salvar Alterações
-                    </button>
-                </div>
-
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Atualizar Postagem</button>
             </form>
         </div>
     </div>
