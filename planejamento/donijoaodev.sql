@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 02/10/2026 às 20:50
+-- Tempo de geração: 22/10/2026 às 19:36
 -- Versão do servidor: 8.4.7
 -- Versão do PHP: 8.3.28
 
@@ -40,15 +40,14 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `data_atualizacao` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `posts`
 --
 
 INSERT INTO `posts` (`id`, `titulo`, `slug`, `resumo`, `conteudo`, `imagem_capa`, `status`, `data_criacao`, `data_atualizacao`) VALUES
-(1, 'Construindo meu primeiro MVC em PHP', 'construindo-meu-primeiro-mvc-em-php', 'Neste artigo, compartilho os primeiros passos da estruturação do meu projeto pessoal usando PHP puro e o padrão MVC.', '<p>Sair dos tutoriais e construir algo do zero é sempre um desafio. Hoje comecei a estruturar meu MVP usando <strong>PHP</strong> puro, sem frameworks pesados, para realmente entender como as coisas funcionam debaixo dos panos.</p><p>A separação de conceitos entre Models, Views e Controllers faz toda a diferença na organização e manutenção do código.</p>', NULL, 1, '2026-08-14 15:14:16', '2026-10-01 09:41:42'),
-(3, 'Como Liberar Acesso a pasta www do LAMPP', 'como-liberar-acesso-a-pasta-www-do-lampp', 'como abrir permissão para trabalhar com a pasta www da stack LAMPP (linux, apache, mariaDB/mySQL, Pearl e PHP), uma vez que instalar a stack é apenas o primeiro passo.', 'Abra o terminal (pressione `Ctrl + Alt + T`) e execute o comando abaixo para tornar seu usuário o dono da pasta:\r\n\r\n    sudo chown $USER -R /var/www/html\r\n\r\n_Nota: Será solicitada a sua senha do Ubuntu.\r\n\r\n2. Ajustar as Permissões de Leitura e Escrita\r\n\r\nEm seguida, configure as permissões de acesso para que pastas e arquivos possam ser lidos e modificados:\r\n\r\n    sudo chmod 755 -R /var/www/html\r\n\r\nCaso esteja usando um ambiente de desenvolvimento local (como XAMPP) e queira permissão total para evitar qualquer bloqueio futuro, você pode usar a permissão 777:\r\n\r\n    sudo chmod 777 -R /var/www/html\r\n', NULL, 0, '2026-09-17 14:19:39', '2026-10-01 08:51:01');
+(7, 'Construindo meu primeiro MVC em PHP', 'construindo-meu-primeiro-mvc-em-php', 'Começar um projeto independente não é nada fácil, buscando não reinventar a roda, decidi criar o meu próprio blog com uma arquitetura inventada do zero.', '<p>Sair dos tutoriais e construir algo do zero é sempre um desafio. Há algum tempo, comecei a estruturar meu MVP usando <strong>PHP</strong> puro, sem frameworks pesados, para realmente entender(ou relembrar) como as coisas funcionam debaixo dos panos com a stack do Apache.</p>\r\n<p>Já havia feito um projeto caprichado em PHP no 3º semestre da faculdade com o Professor Junior Gonçalves, o Volta ao Mundo.</p>\r\n<p>onde nós tivemos de desenvolver um site php, não precisava ser completamente do zero, 1 vez que o professor disponibilizou o molde dele para a gente dar o pontapé inicial.</p>\r\n<p>Além da personalização, era nosso função garantir uma serie de requisitos por conta própria, como comentários, segurança, responsividade com banco de dados e 1 ou + funções extras únicas.</p>\r\n<p>este blog é quase uma repetição dele, mas com a separação de conceitos entre Models, Views e Controllers, que faz toda a diferença na organização e manutenção do código.</p>\r\n<p>o pulo do gato foi quando publicamos no github Pages, meu primeiro site na web.</p>\r\n<p>meu olhos brilhavam de ver meu projeto no ar para todos verem e interagir</p>\r\n<p>ao final daquele projeto tive a certeza absoluta de que queria seguir carreira como programador/desenvolvedor</p>\r\n<p>este projeto é como um retorno as raízes, desenvolver algo meu, na stack que mais me empenhei, onde ja tive um resultado real e demonstravel</p>\r\n<p>não tenha medo de dar um passo atras, as vezes é preciso para dar um pulo maior a frente !</p>\r\n\r\n<p>teste</p>', 'post_6ad6613cd073e.jpg', 1, '2026-10-19 15:28:12', '2026-10-19 15:32:31');
 
 -- --------------------------------------------------------
 
@@ -64,22 +63,21 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `descricao` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `preco` decimal(10,2) NOT NULL,
   `imagem` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link_afiliado` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1',
   `data_criacao` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `produtos`
 --
 
-INSERT INTO `produtos` (`id`, `nome`, `slug`, `descricao`, `preco`, `imagem`, `status`, `data_criacao`) VALUES
-(1, 'SSD 1TB NVMe M.2', 'ssd-1tb-nvme-m2', 'SSD de altíssima velocidade para leitura e gravação, ideal para acelerar o boot do sistema operacional e carregamento de projetos no WAMP.', 350.00, NULL, 1, '2026-08-17 17:53:45'),
-(2, 'Teclado Mecânico Switch Brown', 'teclado-mecanico-switch-brown', 'Teclado mecânico focado em produtividade. O switch brown oferece feedback tátil sem fazer muito barulho, perfeito para longas sessões de código.', 220.50, NULL, 1, '2026-08-17 17:53:45'),
-(3, 'Monitor LG UltraWide 29\"', 'monitor-lg-ultrawide-29', 'Proporção 21:9. Excelente para dividir a tela: VS Code de um lado, navegador com a documentação do PHP do outro.', 980.00, NULL, 1, '2026-08-17 17:53:45'),
-(4, 'Memória RAM 16GB DDR4 3200MHz', 'memoria-ram-16gb-ddr4', 'Módulo de memória de alta performance. Essencial para rodar contêineres e bancos de dados locais sem travamentos.', 199.90, NULL, 1, '2026-08-17 17:53:45'),
-(5, 'Mouse Vertical Ergonômico', 'mouse-vertical-ergonomico', 'Mouse sem fio focado em ergonomia para prevenir dores no pulso de quem trabalha o dia todo no computador.', 150.00, NULL, 0, '2026-08-17 17:53:45');
+INSERT INTO `produtos` (`id`, `nome`, `slug`, `descricao`, `preco`, `imagem`, `link_afiliado`, `status`, `data_criacao`) VALUES
+(7, 'Mouse Vertical Ergonômico', 'mouse-vertical-ergon-mico', 'Mouse sem fio focado em ergonomia para prevenir dores no pulso de quem trabalha o dia todo no computador.', 42.69, 'produto_6ada618b523c2.png', 'https://www.mercadolivre.com.br/p/MLB59019868?matt_tool=38524122&pdp_filters=item_id:MLB5776728534&ua=oVen1soZ4gHR5SFXmXgEGcWlGMAew2noFbylpBTQHcYaZaE#origin=share&sid=share&wid=MLB5776728534&action=copy', 1, '2026-10-22 16:17:29'),
+(8, 'Teclado Completo C3', 'teclado-completo-c3', 'o Teclado ABNT-2 completo da C3 é um dos melhores que já utilizei, gosto dele pelo custo-beneficio.', 28.30, 'produto_6ada622490dc5.png', 'https://www.mercadolivre.com.br/p/MLB39786007?matt_tool=38524122&pdp_filters=item_id:MLB4623753271&ua=yAi7nYYp9A_h0JmkFBtElOm1l3URAlCIIGwSxjJNnMjk15E#origin=share&sid=share&wid=MLB4623753271&action=copy', 1, '2026-10-22 16:21:08'),
+(9, 'Monitor Fmaxx 19 com HDMI e VGA ', 'monitor-fmaxx-19-com-hdmi-e-vga', 'Tela BBB.\r\nbonita, boa e Barata.\r\ntem mehlores opções eu admito, mas é uma tela decente.\r\ntem como fazer ajuste ergonômico ( me incomoda muito quando um monitor não tem isso )\r\ne tem uma otima qualidade para um tela que custa menos de 300R$.', 199.90, 'produto_6ada6411cea93.png', 'https://www.mercadolivre.com.br/p/MLB29902763?matt_tool=38524122&pdp_filters=item_id:MLB5371536654&ua=euEYv-xdCY9VD2U-iJ4eS-dkwMh3hLU8ZAj7jdN0fu3i0l8#origin=share&sid=share&wid=MLB5371536654&action=copy', 1, '2026-10-22 16:29:21');
 
 -- --------------------------------------------------------
 
