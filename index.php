@@ -31,6 +31,7 @@ spl_autoload_register(function ($classe) {
 $rotas = [
     'blog'              => ['BlogController',     'index'],
     'post'              => ['BlogController',     'ver'],
+    'comentario_enviar' => ['ComentarioController', 'enviar'],
     'produtos'          => ['ProdutoController',  'index'],
     'contato'           => ['ContatoController',   'contato'],
 
@@ -45,6 +46,10 @@ $rotas = [
     'admin_post_editar' => ['PostAdminController','editar'],
     'admin_post_status' => ['PostAdminController','mudarStatus'],
     'admin_post_deletar' => ['PostAdminController','deletar'],
+
+    'admin_comentario_listar' => ['ComentarioAdminController', 'listar'],
+    'admin_comentario_status' => ['ComentarioAdminController', 'mudarStatus'],
+    'admin_comentario_deletar'=> ['ComentarioAdminController', 'deletar'],
 
     'admin_produto_listar' => ['ProdutoAdminController','listar'],
     'admin_produto_criar'  => ['ProdutoAdminController','criar'],

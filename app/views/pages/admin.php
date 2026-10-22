@@ -27,6 +27,21 @@
             </div>
         </div>
 
+                <!-- Card: Moderar Comentários -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h4 class="card-title"><i class="bi bi-chat-left-text"></i> Comentários</h4>
+                    <p class="card-text text-muted">Aprove, marque como spam ou exclua os comentários deixados nos seus artigos.</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pb-3">
+                    <a href="index.php?pagina=admin_comentario_listar" class="btn btn-primary w-100">
+                        Moderar Comentários
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <!-- Card: Gerenciar Produtos -->
         <div class="col-md-6 mb-4">
             <div class="card shadow-sm h-100">

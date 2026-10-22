@@ -10,18 +10,23 @@ class BlogController extends Controller
         $this->view('blog', ['posts' => $posts]);
     }
 
-    // index.php?pagina=post&slug=...
-    public function ver()
-    {
-        $slug = $_GET['slug'] ?? '';
+     public function ver() {
+     $slug = $_GET['slug'] ?? '';
+     $postModel = new Post($this->db());
+     $post_atual = $postModel->buscarPorSlug($slug);
 
-        $postModel = new Post($this->db());
-        $post_atual = $postModel->buscarPorSlug($slug);
+     if (!$post_atual) {
+         $this->redirect('index.php');
+     }
 
-        if (!$post_atual) {
-            $this->redirect('index.php');
-        }
+     // --- INÍCIO DA BUSCA DE COMENTÁRIOS ---
+     $comentarioModel = new Comentario($this->db());
+     $comentarios = $comentarioModel->listarAprovadosPorPost($post_atual['id'])->fetchAll();
+     // --- FIM ---
 
-        $this->view('post_unico', ['post_atual' => $post_atual]);
+     $this->view('post_unico', [
+         'post_atual' => $post_atual,
+         'comentarios' => $comentarios
+     ]);
     }
 }
