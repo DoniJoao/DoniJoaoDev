@@ -49,10 +49,15 @@
                     <?php echo htmlspecialchars($produto['descricao']); ?>
                 </p>
                 
-                <!-- Botão de Interesse (mt-auto empurra para o fundo) -->
-                <a href="https://wa.me/5511999999999?text=Olá!%20Tenho%20interesse%20no%20produto:%20<?php echo $produto['nome']; ?>" target="_blank" class="btn btn-outline-primary mt-auto">
-                    <i class="bi bi-whatsapp"></i> Tenho Interesse
-                </a>
+                <?php if (!empty($produto['link_afiliado'])): ?>
+                  <!-- Se tiver link, abre em nova aba -->
+                  <a href="<?php echo htmlspecialchars($produto['link_afiliado']); ?>" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary w-100">
+                      Tenho Interesse <i class="bi bi-box-arrow-up-right ms-1"></i>
+                  </a>
+                <?php else: ?>
+                  <!-- Se não tiver link cadastrado, mostra um botão desabilitado -->
+                  <button class="btn btn-outline-secondary w-100" disabled>Sem link</button>
+                <?php endif; ?>
               </div>
             </div>
           </div>

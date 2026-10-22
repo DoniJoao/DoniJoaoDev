@@ -30,6 +30,12 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label fw-bold">Link de Afiliado (Opcional)</label>
+                    <input type="url" name="link_afiliado" class="form-control" value="<?php echo htmlspecialchars($produto_atual['link_afiliado'] ?? ''); ?>" placeholder="Ex: https://mercadolivre.com.br/...">
+                    <div class="form-text">O botão "Tenho Interesse" na vitrine apontará para este link.</div>
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label fw-bold">Imagem Atual</label>
                     <?php if (!empty($produto_atual['imagem'])): ?>
                         <div class="mb-2">

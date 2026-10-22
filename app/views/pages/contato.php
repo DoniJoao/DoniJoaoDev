@@ -59,7 +59,7 @@
 
         <!-- Beecrowd -->
         <div class="col-6 col-md-4">
-            <a href="https://judge.beecrowd.com/pt/profile/SEU_ID" target="_blank" class="text-decoration-none">
+            <a href="https://judge.beecrowd.com/pt/profile/912358" target="_blank" class="text-decoration-none">
                 <div class="card h-100 shadow-sm border-0 text-center card-hover">
                     <div class="card-body py-4">
                         <i class="bi bi-bug-fill fs-1 text-success"></i>
@@ -71,7 +71,7 @@
 
         <!-- Skoob -->
         <div class="col-6 col-md-4">
-            <a href="https://www.skoob.com.br/usuario/SEU_ID" target="_blank" class="text-decoration-none">
+            <a href="https://skoob.com.br/profile/11252555-donijoao" target="_blank" class="text-decoration-none">
                 <div class="card h-100 shadow-sm border-0 text-center card-hover">
                     <div class="card-body py-4">
                         <i class="bi bi-book-half fs-1" style="color: #0056b3;"></i>
@@ -83,7 +83,7 @@
 
         <!-- Duolingo -->
         <div class="col-6 col-md-4">
-            <a href="https://duolingo.com/profile/SEU_USUARIO" target="_blank" class="text-decoration-none">
+            <a href="https://www.duolingo.com/profile/DoniJoao?via=share_profile_link" target="_blank" class="text-decoration-none">
                 <div class="card h-100 shadow-sm border-0 text-center card-hover">
                     <div class="card-body py-4">
                         <i class="bi bi-translate fs-1 text-success"></i>

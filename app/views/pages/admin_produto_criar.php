@@ -28,6 +28,12 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label fw-bold">Link de Afiliado (Opcional)</label>
+                    <input type="url" name="link_afiliado" class="form-control" placeholder="Ex: https://mercadolivre.com.br/...">
+                    <div class="form-text">O botão "Tenho Interesse" na vitrine apontará para este link.</div>
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label fw-bold">Imagem do Produto (Max 2MB)</label>
                     <input type="file" name="imagem" class="form-control" accept="image/jpeg, image/png, image/webp">
                     <div class="form-text">Formatos aceitos: JPG, PNG, WEBP.</div>
